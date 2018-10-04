@@ -1,27 +1,49 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import Person from './Person/Person';
+
+const API = 'https://randomuser.me/api/?results=10';
+const DEFAULT_QUERY = 'redux';
 class App extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   state = {
+  //     persons: []
+  //   }
+  // }
+  
+  state = {
+    persons: [{"gender":"female","name":{"title":"mrs","first":"ggg","last":"ggg"},"location":{"street":"sørbråtveien 2091","city":"årnes","state":"nord-trøndelag","postcode":"6403","coordinates":{"latitude":"49.6486","longitude":"111.5435"},"timezone":{"offset":"+4:30","description":"Kabul"}},"email":"ellie.askeland@example.com","login":{"uuid":"407a4df7-45ff-4aa7-9734-cf39383ba61c","username":"crazypeacock975","password":"butterfl","salt":"w09MNBgD","md5":"d6a7013f8f387771239d28c9dd2b302c","sha1":"313b81579017486102951520f2bafdd485e0bca1","sha256":"fdc0ffa02c5895c28951e4800b2b8c35263bac5ae79126543a62efa16f99649c"},"dob":{"date":"1956-07-11T20:49:30Z","age":62},"registered":{"date":"2012-01-20T22:07:23Z","age":6},"phone":"62764187","cell":"43418564","id":{"name":"FN","value":"11075632772"},"picture":{"large":"https://randomuser.me/api/portraits/women/20.jpg","medium":"https://randomuser.me/api/portraits/med/women/20.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/20.jpg"},"nat":"NO"},{"gender":"male","name":{"title":"mr","first":"helge","last":"leder"},"location":{"street":"mühlweg 176","city":"bad gandersheim","state":"niedersachsen","postcode":54899,"coordinates":{"latitude":"47.6967","longitude":"-136.2682"},"timezone":{"offset":"+3:00","description":"Baghdad, Riyadh, Moscow, St. Petersburg"}},"email":"helge.leder@example.com","login":{"uuid":"571c9b75-3b36-4788-8b08-785680b6760c","username":"angrypeacock916","password":"here","salt":"IxzIbTzD","md5":"fee559632d79d23f1708de5cc41cae47","sha1":"3bc05b674bbc03e99b1171cbeacce66aadf97ca8","sha256":"04144252362f5b9204f9d3b9842fa1766265c7e98e927b6910e3c895b981fd98"},"dob":{"date":"1962-10-01T17:54:51Z","age":56},"registered":{"date":"2010-11-02T22:35:31Z","age":7},"phone":"0877-8555648","cell":"0175-9179061","id":{"name":"","value":null},"picture":{"large":"https://randomuser.me/api/portraits/men/15.jpg","medium":"https://randomuser.me/api/portraits/med/men/15.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/15.jpg"},"nat":"DE"},{"gender":"female","name":{"title":"mrs","first":"عسل","last":"کامروا"},"location":{"street":"2248 میدان ولیعصر (عج)","city":"قم","state":"کردستان","postcode":10900,"coordinates":{"latitude":"73.3552","longitude":"-56.6448"},"timezone":{"offset":"+3:00","description":"Baghdad, Riyadh, Moscow, St. Petersburg"}},"email":"عسل.کامروا@example.com","login":{"uuid":"82dbce98-8a7c-49e2-bf0a-1eae8c983cbc","username":"orangeduck196","password":"dougie","salt":"XbABZi13","md5":"468e590805b9ecf5a624f1eb45ec62bb","sha1":"6070fe0dd4e3cede980467a1b39c1658804ded47","sha256":"e72302815d483922321ec83ed20f8e8ee34ed47b89fa0563a43a47941eeca481"},"dob":{"date":"1950-12-02T12:04:41Z","age":67},"registered":{"date":"2015-10-25T16:37:28Z","age":2},"phone":"068-75400042","cell":"0986-861-1780","id":{"name":"","value":null},"picture":{"large":"https://randomuser.me/api/portraits/women/10.jpg","medium":"https://randomuser.me/api/portraits/med/women/10.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/10.jpg"},"nat":"IR"},{"gender":"male","name":{"title":"mr","first":"leo","last":"halko"},"location":{"street":"3417 hämeenkatu","city":"oulu","state":"päijät-häme","postcode":96894,"coordinates":{"latitude":"-88.1999","longitude":"105.8997"},"timezone":{"offset":"-8:00","description":"Pacific Time (US & Canada)"}},"email":"leo.halko@example.com","login":{"uuid":"067d2de4-8311-4d19-9c86-01073daca21b","username":"goldenpeacock688","password":"lightning","salt":"PUXli514","md5":"cb9991b5b663e9c5ad8766f3a2810bea","sha1":"4338a67eee8f4058031b99a4108f9224a3247513","sha256":"fc2369090d08f0d5df7e88ef2af67dec76448357af99bdd724bce67c5240528c"},"dob":{"date":"1950-02-27T06:02:36Z","age":68},"registered":{"date":"2011-04-17T19:51:53Z","age":7},"phone":"04-155-460","cell":"049-737-38-03","id":{"name":"HETU","value":"NaNNA101undefined"},"picture":{"large":"https://randomuser.me/api/portraits/men/17.jpg","medium":"https://randomuser.me/api/portraits/med/men/17.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/17.jpg"},"nat":"FI"},{"gender":"male","name":{"title":"mr","first":"lucas","last":"blanc"},"location":{"street":"9360 rue bony","city":"aulnay-sous-bois","state":"lot","postcode":44183,"coordinates":{"latitude":"69.8050","longitude":"-170.2241"},"timezone":{"offset":"+10:00","description":"Eastern Australia, Guam, Vladivostok"}},"email":"lucas.blanc@example.com","login":{"uuid":"77812539-9fab-4c22-ade8-5ba182428979","username":"orangepanda974","password":"terry1","salt":"WLbKuFL3","md5":"8d397bdf73de8adb5665a51a70dbb84b","sha1":"b44510f6897631536c41c03a8c3848a7b7ebfef7","sha256":"31840a6d3d0f0680b720335fb756affc30b58a9e1dcdc7e045d3e56f591ac3b6"},"dob":{"date":"1956-03-08T22:57:16Z","age":62},"registered":{"date":"2012-10-07T10:09:18Z","age":5},"phone":"05-90-05-77-58","cell":"06-84-93-79-05","id":{"name":"INSEE","value":"1NNaN48947262 46"},"picture":{"large":"https://randomuser.me/api/portraits/men/75.jpg","medium":"https://randomuser.me/api/portraits/med/men/75.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/75.jpg"},"nat":"FR"}]
+  }
+  // componentDidMount() {
+  //   fetch("https://randomuser.me/api/?results=10")
+  //     .then(results => results.json())
+  //     .then(data => this.setState({ persons: data.results }));
+  // }
+  switchNameHandler = () => {
+    this.setState({persons: [{"gender":"female","name":{"title":"mrs","first":"ggg","last":"ggg"},"location":{"street":"sørbråtveien 2091","city":"årnes","state":"nord-trøndelag","postcode":"6403","coordinates":{"latitude":"49.6486","longitude":"111.5435"},"timezone":{"offset":"+4:30","description":"Kabul"}},"email":"ellie.askeland@example.com","login":{"uuid":"407a4df7-45ff-4aa7-9734-cf39383ba61c","username":"crazypeacock975","password":"butterfl","salt":"w09MNBgD","md5":"d6a7013f8f387771239d28c9dd2b302c","sha1":"313b81579017486102951520f2bafdd485e0bca1","sha256":"fdc0ffa02c5895c28951e4800b2b8c35263bac5ae79126543a62efa16f99649c"},"dob":{"date":"1956-07-11T20:49:30Z","age":62},"registered":{"date":"2012-01-20T22:07:23Z","age":6},"phone":"62764187","cell":"43418564","id":{"name":"FN","value":"11075632772"},"picture":{"large":"https://randomuser.me/api/portraits/women/20.jpg","medium":"https://randomuser.me/api/portraits/med/women/20.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/20.jpg"},"nat":"NO"},{"gender":"male","name":{"title":"mr","first":"helge","last":"leder"},"location":{"street":"mühlweg 176","city":"bad gandersheim","state":"niedersachsen","postcode":54899,"coordinates":{"latitude":"47.6967","longitude":"-136.2682"},"timezone":{"offset":"+3:00","description":"Baghdad, Riyadh, Moscow, St. Petersburg"}},"email":"helge.leder@example.com","login":{"uuid":"571c9b75-3b36-4788-8b08-785680b6760c","username":"angrypeacock916","password":"here","salt":"IxzIbTzD","md5":"fee559632d79d23f1708de5cc41cae47","sha1":"3bc05b674bbc03e99b1171cbeacce66aadf97ca8","sha256":"04144252362f5b9204f9d3b9842fa1766265c7e98e927b6910e3c895b981fd98"},"dob":{"date":"1962-10-01T17:54:51Z","age":56},"registered":{"date":"2010-11-02T22:35:31Z","age":7},"phone":"0877-8555648","cell":"0175-9179061","id":{"name":"","value":null},"picture":{"large":"https://randomuser.me/api/portraits/men/15.jpg","medium":"https://randomuser.me/api/portraits/med/men/15.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/15.jpg"},"nat":"DE"},{"gender":"female","name":{"title":"mrs","first":"عسل","last":"کامروا"},"location":{"street":"2248 میدان ولیعصر (عج)","city":"قم","state":"کردستان","postcode":10900,"coordinates":{"latitude":"73.3552","longitude":"-56.6448"},"timezone":{"offset":"+3:00","description":"Baghdad, Riyadh, Moscow, St. Petersburg"}},"email":"عسل.کامروا@example.com","login":{"uuid":"82dbce98-8a7c-49e2-bf0a-1eae8c983cbc","username":"orangeduck196","password":"dougie","salt":"XbABZi13","md5":"468e590805b9ecf5a624f1eb45ec62bb","sha1":"6070fe0dd4e3cede980467a1b39c1658804ded47","sha256":"e72302815d483922321ec83ed20f8e8ee34ed47b89fa0563a43a47941eeca481"},"dob":{"date":"1950-12-02T12:04:41Z","age":67},"registered":{"date":"2015-10-25T16:37:28Z","age":2},"phone":"068-75400042","cell":"0986-861-1780","id":{"name":"","value":null},"picture":{"large":"https://randomuser.me/api/portraits/women/10.jpg","medium":"https://randomuser.me/api/portraits/med/women/10.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/10.jpg"},"nat":"IR"},{"gender":"male","name":{"title":"mr","first":"leo","last":"halko"},"location":{"street":"3417 hämeenkatu","city":"oulu","state":"päijät-häme","postcode":96894,"coordinates":{"latitude":"-88.1999","longitude":"105.8997"},"timezone":{"offset":"-8:00","description":"Pacific Time (US & Canada)"}},"email":"leo.halko@example.com","login":{"uuid":"067d2de4-8311-4d19-9c86-01073daca21b","username":"goldenpeacock688","password":"lightning","salt":"PUXli514","md5":"cb9991b5b663e9c5ad8766f3a2810bea","sha1":"4338a67eee8f4058031b99a4108f9224a3247513","sha256":"fc2369090d08f0d5df7e88ef2af67dec76448357af99bdd724bce67c5240528c"},"dob":{"date":"1950-02-27T06:02:36Z","age":68},"registered":{"date":"2011-04-17T19:51:53Z","age":7},"phone":"04-155-460","cell":"049-737-38-03","id":{"name":"HETU","value":"NaNNA101undefined"},"picture":{"large":"https://randomuser.me/api/portraits/men/17.jpg","medium":"https://randomuser.me/api/portraits/med/men/17.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/17.jpg"},"nat":"FI"},{"gender":"male","name":{"title":"mr","first":"lucas","last":"blanc"},"location":{"street":"9360 rue bony","city":"aulnay-sous-bois","state":"lot","postcode":44183,"coordinates":{"latitude":"69.8050","longitude":"-170.2241"},"timezone":{"offset":"+10:00","description":"Eastern Australia, Guam, Vladivostok"}},"email":"lucas.blanc@example.com","login":{"uuid":"77812539-9fab-4c22-ade8-5ba182428979","username":"orangepanda974","password":"terry1","salt":"WLbKuFL3","md5":"8d397bdf73de8adb5665a51a70dbb84b","sha1":"b44510f6897631536c41c03a8c3848a7b7ebfef7","sha256":"31840a6d3d0f0680b720335fb756affc30b58a9e1dcdc7e045d3e56f591ac3b6"},"dob":{"date":"1956-03-08T22:57:16Z","age":62},"registered":{"date":"2012-10-07T10:09:18Z","age":5},"phone":"05-90-05-77-58","cell":"06-84-93-79-05","id":{"name":"INSEE","value":"1NNaN48947262 46"},"picture":{"large":"https://randomuser.me/api/portraits/men/75.jpg","medium":"https://randomuser.me/api/portraits/med/men/75.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/75.jpg"},"nat":"FR"}]})
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <h1>
+        Hello React
+      </h1>
+      <button onClick={this.switchNameHandler}>Switch Name</button>
+      <Person individual={this.state.persons[0]}></Person>
+      <Person individual={this.state.persons[1]}></Person>
+      <Person individual={this.state.persons[2]}></Person>
+      {/* <Person 
+        name={this.state.persons[1].name} 
+        age={this.state.persons[1].age}></Person>
+      <Person 
+        name={this.state.persons[2].name} 
+        age={this.state.persons[2].age}></Person> */}
       </div>
     );
+    // return React.createElement('div', {className: 'App'}, 
+    //   React.createElement('h1',null,'Hello React'));
   }
 }
 

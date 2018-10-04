@@ -1,0 +1,53 @@
+{"results":
+    [
+        {"gender":"female",
+        "name":{
+            "title":"mrs",
+            "first":"jennifer",
+            "last":"jones"},
+        "location":{
+            "street":"7133 e sandy lake rd",
+            "city":"bellevue",
+            "state":"hawaii",
+            "postcode":16779,
+            "coordinates":{
+                "latitude":"88.5536",
+                "longitude":"37.7600"
+                },
+                "timezone":{
+                    "offset":"+4:00",
+                    "description":"Abu Dhabi, Muscat, Baku, Tbilisi"
+                    }
+                },
+        "email":"jennifer.jones@example.com",
+        "login":{
+            "uuid":"7799b313-187b-424e-bada-3ff99518e61b",
+            "username":"purpledog989",
+            "password":"southpar",
+            "salt":"HCTkr5DN",
+            "md5":"ad0c0b8926c6e7030ddf11cae6a371a7",
+            "sha1":"4989578b2edb770aa79032cdaa15b5dea8e99810",
+            "sha256":"62fa9230cf0784018f0b1970d786638513835b6d6a8b35f6eecf9ce38290f37c"
+        },
+        "dob":
+            {
+                "date":"1996-02-25T00:15:51Z",
+                "age":22
+            },
+        "registered":{
+            "date":"2011-12-23T03:01:29Z",
+            "age":6
+        },
+        "phone":"(315)-930-7784","cell":"(781)-069-8824",
+        "id":{
+            "name":"SSN",
+            "value":"308-59-7132"},
+        "picture":{
+            "large":"https://randomuser.me/api/portraits/women/56.jpg",
+            "medium":"https://randomuser.me/api/portraits/med/women/56.jpg",
+            "thumbnail":"https://randomuser.me/api/portraits/thumb/women/56.jpg"},
+        "nat":"US"
+        }]
+        
+        ,"info":{"seed":"3f3b60100c2a4d4b","results":1,"page":1,"version":"1.2"}
+        }
